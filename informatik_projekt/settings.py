@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'informatik_projekt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mssql',
         'NAME': 'intelrobotics',
         'USER': keys.SQL_USER,
         'PASSWORD': keys.SQL_PASSWORD,
