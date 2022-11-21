@@ -8,8 +8,27 @@
             <div class="article-metadata">
               <h2>About us</h2>
           </div>
-          <p class="article-title">Made by Marvin, Niels, Anders, Troels
-        </p>
+          <table>
+            <tr>
+            {{ counter.increment }}
+            {% for user in users %}
+            <td>
+            <img class="navImg ml-4 nav-item rounded-circle mr-0" src="{{ user.profile.image.url }}"/></a>
+            <br />
+            Name: {{ user.first_name }} {{ user.last_name }}
+            <br />
+            Email: <a href="mailto:{{ user.email }}">{{ user.email }}</a>
+            </td>
+            
+              {% if counter.count|divisibleby:2 %}
+                </tr>
+                <tr>
+              {% endif %}
+              {{ counter.increment }}
+            
+            {% endfor %}
+              </tr>
+          </table>
           </div>
         </article>
       </div>

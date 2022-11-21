@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-import os
+import os, django
 from pathlib import Path
 import keys
 
@@ -32,12 +32,13 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
     'main.apps.MainConfig',
     'products.apps.ProductsConfig',
     'orders.apps.OrdersConfig',
+    'users.apps.UsersConfig',
     'crispy_forms',
     'mobiledetect',
+    'axes',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'mobiledetect.middleware.DetectMiddleware',
+    'axes.middleware.AxesMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,11 +85,11 @@ WSGI_APPLICATION = 'informatik_projekt.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mssql',
+        'ENGINE': keys.SQL_BACKEND,
         'NAME': 'intelrobotics',
         'USER': keys.SQL_USER,
         'PASSWORD': keys.SQL_PASSWORD,
-        'HOST': '127.0.0.1',
+        'HOST': keys.SQL_HOST,
         'PORT': '3306'
     }
 }
@@ -121,6 +123,15 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesStandaloneBackend',
+
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 
 # Internationalization

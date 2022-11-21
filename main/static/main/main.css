@@ -145,3 +145,10 @@ a.article-title:hover {
     display: none;
   }
 }
+
+
+td {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-right: 100px;
+}

@@ -3,6 +3,7 @@ from django.contrib.auth import login as UserLogin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import logout as DjangoLogout
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -11,40 +12,22 @@ from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 
 
 
-def register(request):
-    if request.method == 'POST':
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            user = User.objects.get(username=username)
-            UserLogin(request, user)
-            messages.success(request, f'Account "{username}" Created Successfully!')
-            try: next_page = request.GET['next']
-            except: return redirect('home')
-            else: return HttpResponseRedirect(next_page)
-
-    else:
-        form = UserRegisterForm()
-
-    context = {
-    'title': "Register",
-    'form': form
-    }
-    return render(request, 'users/register.html.django', context)
-
-
 def login(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
 
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            user = User.objects.get(username=username)
+        username = form.data["username"]
+        password = form.data["password"]
+        user = authenticate(
+            request=request,
+            username=username,
+            password=password
+        )
+        if user is not None:
             UserLogin(request, user)
-            try: next_page = request.GET['next']
-            except: return redirect('home')
-            else: return HttpResponseRedirect(next_page)
+        try: next_page = request.GET['next']
+        except: return redirect('home')
+        else: return HttpResponseRedirect(next_page)
 
     else:
         form = AuthenticationForm()
