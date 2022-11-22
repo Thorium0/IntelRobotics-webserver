@@ -38,3 +38,15 @@ def create(request):
     "form": form
     }
     return render(request, 'products/create.html.django', context)
+
+
+
+def product(request, productId):
+
+    product = Product.objects.get(id=productId)
+
+    context = {
+        "title": "Product - "+product.productName,
+        "product": product
+    }
+    return render(request, 'products/product.html.django', context)

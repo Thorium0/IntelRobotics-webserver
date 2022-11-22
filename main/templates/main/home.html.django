@@ -4,8 +4,31 @@
     <div class="row" id="winbox">
       <div class="col-md-12">
         <h1>{{ title }}</h1>
+        <table>
+          <tr>
+            
+        {% for product in products %}
+        {{ counter.increment }}
+            <td>
+              <article class="media content-section">
+                <div class="media-body">
+                  <div class="article-metadata">
+                    <img src="{{ product.productImg.url }}"></img>
+                  </div>
+                  <h2>{{ product.productName }}</h2>
+                  <p>Product No: {{ product.productNo }}</p>
+                <button type="button" class="btn btn-outline-info" onclick="window.location.href='{% url 'product' product.id %}'">More info</button>
+                </div>
+              </article>
+            </td>
+            {% if counter.count|divisibleby:2 %}
+            </tr>
+            <tr>
+            {% endif %}
 
-
+        {% endfor %}
+            </tr>
+          </table>
         
       </div>
       </div>

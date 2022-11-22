@@ -1,6 +1,7 @@
 from django.db import models
 from djmoney.models.fields import MoneyField
 from django.core.validators import MinLengthValidator, MaxLengthValidator
+from PIL import Image
 
 class Product(models.Model):
     productName = models.CharField(max_length=100)
@@ -10,6 +11,13 @@ class Product(models.Model):
     productImg = models.ImageField(upload_to='product_pics/', default='default-product.png')
 
 
+    def save(self, **kwargs):
+        super().save()
+        img = Image.open(self.image.path)
+        if img.height > 500 or img.width > 600:
+            size = (300, 300)
+            img.thumbnail(size)
+            img.save(self.image.path)
 
     def __str__(self):
         return f'{self.productNo}: {self.productName}'

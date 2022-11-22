@@ -152,3 +152,8 @@ td {
   padding-bottom: 20px;
   padding-right: 100px;
 }
+
+.largeImg {
+  width: 100px;
+  height: 100px;
+}

@@ -1,0 +1,19 @@
+{% extends "main/base.html.django" %}
+{% block content %}
+  <main role="main" class="container">
+    <div class="row" id="winbox">
+      <div class="col-md-12">
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <img src="{{ product.productImg.url }}"></img>
+            </div>
+            <h2>{{ product.productName }}</h2>
+            <p>Product No: {{ product.productNo }}</p>
+            <p>{{ product.productDesc }}</p>
+          </div>
+        </article>
+      </div>
+      </div>
+  </main>
+{% endblock content %}

@@ -29,5 +29,5 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-admin.site.site_header = 'web-server Admin Panel'
-admin.site.site_title = 'web-server'
+admin.site.site_header = 'IntelRobotics Admin Panel'
+admin.site.site_title = 'IntelRobotics'

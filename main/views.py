@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.files.storage import default_storage
 from django.contrib.auth.models import User
+from products.models import Product
 
 
 class Counter:
@@ -20,9 +21,13 @@ class Counter:
 
 
 def home(request):
+
+    products = Product.objects.all()
     
     context = {
     "title" : "Products",
+    "products": products,
+    "counter": Counter()
     }
     return render(request, 'main/home.html.django', context)
 

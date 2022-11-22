@@ -2,7 +2,7 @@
 {% block content %}
   <main role="main" class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-12">
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
@@ -10,10 +10,10 @@
           </div>
           <table>
             <tr>
-            {{ counter.increment }}
-            {% for user in users %}
+              {% for user in users %}
+              {{ counter.increment }}
             <td>
-            <img class="navImg ml-4 nav-item rounded-circle mr-0" src="{{ user.profile.image.url }}"/></a>
+            <img class="largeImg rounded-circle mr-0" src="{{ user.profile.image.url }}"/>
             <br />
             Name: {{ user.first_name }} {{ user.last_name }}
             <br />
@@ -24,7 +24,6 @@
                 </tr>
                 <tr>
               {% endif %}
-              {{ counter.increment }}
             
             {% endfor %}
               </tr>
