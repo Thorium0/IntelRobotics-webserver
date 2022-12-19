@@ -13,11 +13,11 @@ class Product(models.Model):
 
     def save(self, **kwargs):
         super().save()
-        img = Image.open(self.image.path)
+        img = Image.open(self.productImg.path)
         if img.height > 500 or img.width > 600:
             size = (300, 300)
             img.thumbnail(size)
-            img.save(self.image.path)
+            img.save(self.productImg.path)
 
     def __str__(self):
         return f'{self.productNo}: {self.productName}'

@@ -1,1 +1,4 @@
 keys.py
+media/product_pics
+media/profile_pics
+*.pyc
