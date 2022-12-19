@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS=['http://localhost']
 
 # Application definition
 
@@ -90,7 +91,8 @@ DATABASES = {
         'USER': keys.SQL_USER,
         'PASSWORD': keys.SQL_PASSWORD,
         'HOST': keys.SQL_HOST,
-        'PORT': '3306'
+        'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'}
     }
 }
 
