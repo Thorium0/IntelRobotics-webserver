@@ -9,7 +9,7 @@ For at bruge mysql istedet for mssql:
 pip install -r requirements-mysql.txt
 
 
-Gå ind i harmony/settings.py og instil database-indstillinger til hvad du bruger
+Gå ind i informatik_projekt/settings.py og instil database-indstillinger til hvad du bruger
 Lav en fil i root mappen der hedder keys.py og put de sensitite database-informationer i den. Kald variablerne det som er angivet i settings.py
 Kør denne kommando for at oprette databasen: python manage.py migrate
 Start severen med: runserver.sh for Linux, eller runserver.bat for Windows
